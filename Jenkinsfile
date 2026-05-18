@@ -3,12 +3,6 @@ pipeline {
 
     stages {
 
-        stage('Checkout') {
-            steps {
-                git branch: 'main', url: 'https://github.com/SnehalManjarekar/Jenkins_Postman.git'
-            }
-        }
-
         stage('Install Newman') {
             steps {
                 sh 'npm install -g newman'
