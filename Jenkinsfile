@@ -3,32 +3,21 @@ pipeline {
 
     stages {
 
-        stage('Checkout Code') {
+        stage('Checkout') {
             steps {
-                git 'https://github.com/your-username/your-repo.git'
+                git branch: 'main', url: 'https://github.com/SnehalManjarekar/Jenkins_Postman.git'
             }
         }
 
         stage('Install Newman') {
             steps {
                 sh 'npm install -g newman'
-                sh 'npm install -g newman-reporter-html'
             }
         }
 
         stage('Run Postman Tests') {
             steps {
-                sh '''
-                newman run collection.json \
-                -r html \
-                --reporter-html-export newman-report.html
-                '''
-            }
-        }
-
-        stage('Archive Report') {
-            steps {
-                archiveArtifacts artifacts: 'newman-report.html'
+                sh 'newman run Collection.json'
             }
         }
     }
